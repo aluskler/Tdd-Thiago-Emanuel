@@ -20,4 +20,14 @@ export default class ContaBancaria {
       throw new Error(`Valor de ${tipoOperacao} deve ser maior que zero`);
     }
   }
+
+  sacar(valor) {
+    if (typeof valor !== "number" || valor <= 0) {
+      throw new Error("Valor de saque inválido");
+    }
+    if (valor > this.saldo) {
+      throw new Error("Saldo insuficiente");
+    }
+    this.saldo -= valor;
+  }
 }
