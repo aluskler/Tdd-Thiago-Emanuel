@@ -6,3 +6,9 @@ describe("ContaBancaria", () => {
     expect(conta.getSaldo()).toBe(0);
   });
 });
+
+test("deve permitir depósito de valor positivo", () => {
+  const conta = new ContaBancaria();
+  conta.depositar(100);
+  expect(conta.getSaldo()).toBe(100);
+});
