@@ -12,3 +12,16 @@ test("deve permitir depósito de valor positivo", () => {
   conta.depositar(100);
   expect(conta.getSaldo()).toBe(100);
 });
+
+test("deve permitir saque se houver saldo suficiente", () => {
+  const conta = new ContaBancaria();
+  conta.depositar(200);
+  conta.sacar(100);
+  expect(conta.getSaldo()).toBe(100);
+});
+
+test("não deve permitir saque maior que o saldo", () => {
+  const conta = new ContaBancaria();
+  conta.depositar(50);
+  expect(() => conta.sacar(100)).toThrow("Saldo insuficiente");
+});
