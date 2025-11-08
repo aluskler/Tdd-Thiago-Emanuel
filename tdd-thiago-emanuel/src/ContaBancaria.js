@@ -22,12 +22,12 @@ export default class ContaBancaria {
   }
 
   sacar(valor) {
-    if (typeof valor !== "number" || valor <= 0) {
-      throw new Error("Valor de saque inválido");
-    }
+    this.#validarValorPositivo(valor, "saque");
+
     if (valor > this.saldo) {
-      throw new Error("Saldo insuficiente");
+      throw new Error("Saldo insuficiente para realizar o saque");
     }
+
     this.saldo -= valor;
   }
 }
