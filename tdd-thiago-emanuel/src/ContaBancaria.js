@@ -8,9 +8,16 @@ export default class ContaBancaria {
   }
 
   depositar(valor) {
-    if (typeof valor !== "number" || valor <= 0) {
-      throw new Error("Valor de depósito inválido");
-    }
+    this.#validarValorPositivo(valor, "depósito");
     this.saldo += valor;
+  }
+
+  #validarValorPositivo(valor, tipoOperacao) {
+    if (typeof valor !== "number" || isNaN(valor)) {
+      throw new Error(`Valor de ${tipoOperacao} deve ser um número`);
+    }
+    if (valor <= 0) {
+      throw new Error(`Valor de ${tipoOperacao} deve ser maior que zero`);
+    }
   }
 }
